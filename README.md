@@ -85,19 +85,26 @@ Below is the high-level architecture of the system:
 
 ### 💡 Design Decisions & Trade-offs
 1. Is this a scalable design?
+
 The "Collection per Tenant" architecture is a valid strategy for strict data isolation, but it has specific scalability limits.
-Pros: Excellent security (hard isolation), easy to backup/restore specific clients, and simple cleanup (drop collection).
-Cons: MongoDB has limits on the number of namespaces (collections). If the service scales to 10,000+ organizations, having 10,000+ collections can degrade cluster performance and increase RAM usage for metadata management.
+
+• Pros: Excellent security (hard isolation), easy to backup/restore specific clients, and simple cleanup (drop collection).
+
+• Cons: MongoDB has limits on the number of namespaces (collections). If the service scales to 10,000+ organizations, having 10,000+ collections can degrade cluster performance and increase RAM usage for metadata management.
 
 2. Trade-offs with the Tech Stack
-FastAPI: Chosen for its asynchronous capabilities, which pairs perfectly with MongoDB's Motor driver for non-blocking I/O.
-MongoDB: The flexible schema is great for dynamic needs. However, ensuring data consistency between the "Master Metadata" and the "Dynamic Collections" requires careful error handling, as MongoDB does not support cross-database transactions in standalone mode.
-Renaming Strategy: The "Update Organization" feature relies on MongoDB's renameCollection. This is efficient within the same database node but would become a heavy operation (copy-paste) if the system were sharded across different physical servers.
+
+• FastAPI: Chosen for its asynchronous capabilities, which pairs perfectly with MongoDB's Motor driver for non-blocking I/O.
+
+• MongoDB: The flexible schema is great for dynamic needs. However, ensuring data consistency between the "Master Metadata" and the "Dynamic Collections" requires careful error handling, as MongoDB does not support cross-database transactions in standalone mode.
+
+• Renaming Strategy: The "Update Organization" feature relies on MongoDB's renameCollection. This is efficient within the same database node but would become a heavy operation (copy-paste) if the system were sharded across different physical servers.
 
 3. Better Design Suggestion for High Scale
 For a hyper-scalable SaaS, a Shared Collection with Discriminator pattern is often better.
-Instead of org_A, org_B, etc., use one large Items collection.
-Every document includes an organization_id field.
-Benefit: Only one collection to index and manage. Infinite scalability via Sharding based on organization_id.
+
+• Instead of org_A, org_B, etc., use one large Items collection.
+• Every document includes an organization_id field.
+• Benefit: Only one collection to index and manage. Infinite scalability via Sharding based on organization_id.
 
 
