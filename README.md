@@ -72,29 +72,12 @@ The project provides an interactive Swagger UI for testing endpoints.
 5. Manage: You can now access the protected UPDATE and DELETE endpoints. 
 
 ### Key Endpoints
-### Method	 Endpoint	    Description	                                    Auth Required
+
     POST	 /org/create	Register a new Org & Create Dynamic Collection	❌ No
     POST	 /admin/login	Login as Admin & Get JWT Token	                ❌ No
     GET	     /org/get	    Fetch Organization Metadata	                    ❌ No
     PUT	     /org/update	Update Org Name/Email (Renames Collection)	    ✅ Yes
     DELETE	 /org/delete	Delete Org & Drop Collection	                ✅ Yes
-### 📂 Project Structure
-The project follows a modular, class-based architecture to ensure separation of concerns.
-organization_service/
-├── app/
-│   ├── routers/
-│   │   ├── auth.py          # Admin Authentication Routes
-│   │   └── organization.py  # Organization CRUD Routes
-│   ├── database.py          # MongoDB Connection Logic
-│   ├── models.py            # Pydantic Data Models (Schemas)
-│   ├── security.py          # JWT Handling and Password Hashing
-│   ├── services.py          # Core Business Logic (Dynamic Collections)
-│   ├── config.py            # Environment Variable Management
-│   └── main.py              # Application Entry Point
-├── .env                     # Secrets (Not committed to Git)
-├── .gitignore               # Ignored files
-├── requirements.txt         # Dependencies
-└── README.md                # Project Documentation
 
 ### 📐 Architecture Diagram
 Below is the high-level architecture of the system:
