@@ -72,7 +72,7 @@ The project provides an interactive Swagger UI for testing endpoints.
 5. Manage: You can now access the protected UPDATE and DELETE endpoints. 
 
 ### Key Endpoints
-
+#### Auth Required : 
     POST	 /org/create	Register a new Org & Create Dynamic Collection	❌ No
     POST	 /admin/login	Login as Admin & Get JWT Token	                ❌ No
     GET	     /org/get	    Fetch Organization Metadata	                    ❌ No
