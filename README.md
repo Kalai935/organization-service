@@ -2,6 +2,9 @@
 
 A backend service built with **FastAPI** and **MongoDB** designed to manage organizations in a multi-tenant architecture. This system implements a **"Database-per-Tenant"** (specifically Collection-per-Tenant) strategy, where each organization gets its own dedicated collection for data isolation.
 
+**🟢 Live Demo:** https://organization-service-g65l.onrender.com
+**📄 API Docs:** https://organization-service-g65l.onrender.com/docs
+
 ## 🚀 Features
 
 *   **Multi-Tenancy:** automatically creates a dynamic MongoDB collection (`org_<name>`) for every new organization.
@@ -19,7 +22,7 @@ A backend service built with **FastAPI** and **MongoDB** designed to manage orga
 *   **Driver:** Motor (AsyncIOMotorClient)
 *   **Validation:** Pydantic
 *   **Auth:** Python-Jose (JWT) & Passlib (Bcrypt)
-
+*   **Deployment:** Render
 ---
 
 ## ⚙️ Setup & Installation
@@ -71,6 +74,15 @@ The project provides an interactive Swagger UI for testing endpoints.
 4. Authorize: Click the "Authorize" button in the top right, and paste your Token.
 5. Manage: You can now access the protected UPDATE and DELETE endpoints. 
 
+The project provides an interactive Swagger UI for testing endpoints.
+*   **👉 Live URL:** https://organization-service-g65l.onrender.com/docs
+*   **👉 Local URL:** http://127.0.0.1:8000/docs
+
+*  How to Test:
+1. **Create** Organization: Use POST /org/create.
+2. **Login:** Use POST /admin/login to get an access token.
+3. **Authorize:** Click the "Authorize" button in the top right, and paste your Token.
+4. **Manage:** You can now access the protected UPDATE and DELETE endpoints.
 ### Key Endpoints
 #### Auth Required : 
     POST	 /org/create	Register a new Org & Create Dynamic Collection	❌ No
