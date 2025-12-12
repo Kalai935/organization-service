@@ -34,7 +34,7 @@ A backend service built with **FastAPI** and **MongoDB** designed to manage orga
 ### 2. Clone and Install Dependencies
 ```bash
 # Clone the repository
-git clone <your-repo-link-here>
+git clone https://github.com/Kalai935/organization-service
 cd organization_service
 
 # Create virtual environment (Optional but recommended)
