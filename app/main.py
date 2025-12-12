@@ -12,6 +12,10 @@ async def startup():
 async def shutdown():
     db.close()
 
+@app.get("/")
+async def read_root():
+    return {"message": "Server is up and running!"}
+
 app.include_router(auth.router)
 app.include_router(organization.router)
 
